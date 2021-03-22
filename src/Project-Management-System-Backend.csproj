@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Project_Management_System_Backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ExternalServices\" />
+    <Folder Include="ConfigurationSettings\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Common\" />
+    <Folder Include="ServiceManagers\" />
+    <Folder Include="secrets\" />
+  </ItemGroup>
+
+</Project>
