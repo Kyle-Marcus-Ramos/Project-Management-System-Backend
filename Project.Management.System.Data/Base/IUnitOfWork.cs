@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 
 namespace Project.Management.System.Data.Base
 {
-    class IUnitOfWork
+    public interface IUnitOfWork
     {
+        IAccountProjectRepository AccountProjectRepository { get; }
+        IAccountRepository AccountRepository { get; }
+        ICardRepository CardRepository { get; }
+        ICommentRepository CommentRepository { get; }
+        IProjectRepository ProjectRepository { get; }
+        Task Complete();
+        void Dispose();
     }
 }

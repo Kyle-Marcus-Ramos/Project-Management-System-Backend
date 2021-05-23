@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project.Management.System.Data.Base
+﻿namespace Project.Management.System.Data.Base
 {
-    class IUnitOfWorkDapper
+    public interface IUnitOfWorkDapper
     {
+        IAccountProjectQueries AccountProjectQueries { get; }
+        IAccountQueries AccountQueries { get; }
+        ICardQueries CardQueries { get; }
+        ICommentQueries CommentQueries { get; }
+        IProjectQueries ProjectQueries { get; }
     }
 }
