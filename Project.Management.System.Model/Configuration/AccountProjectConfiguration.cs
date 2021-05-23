@@ -6,14 +6,14 @@ using System.Data;
 
 namespace Project.Management.System.Model.Configuration
 {
-    public class UserProjectConfiguration : IEntityTypeConfiguration<UserProject>
+    public class AccountProjectConfiguration : IEntityTypeConfiguration<AccountProject>
     {
-        public void Configure(EntityTypeBuilder<UserProject> builder)
+        public void Configure(EntityTypeBuilder<AccountProject> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-               .HasColumnName("UserProjectId")
+               .HasColumnName("AccountProjectId")
                .HasColumnType(SqlDbType.Int.ToString())
                .ValueGeneratedOnAdd();
 

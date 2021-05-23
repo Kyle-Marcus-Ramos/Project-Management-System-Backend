@@ -5,7 +5,7 @@
         public int CardId { get; set; }
         public Card Card { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
         public string Comments { get; set; }
     }
 }

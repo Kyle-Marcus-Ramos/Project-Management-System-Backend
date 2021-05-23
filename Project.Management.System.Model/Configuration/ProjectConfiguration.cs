@@ -4,9 +4,9 @@ using System.Data;
 
 namespace Project.Management.System.Model.Configuration
 {
-    public class ProjectConfiguration : IEntityTypeConfiguration<Entities.Project>
+    public class ProjectConfiguration : IEntityTypeConfiguration<Entities.Projects>
     {
-        public void Configure(EntityTypeBuilder<Entities.Project> builder)
+        public void Configure(EntityTypeBuilder<Entities.Projects> builder)
         {
             builder.HasKey(x => x.Id);
 

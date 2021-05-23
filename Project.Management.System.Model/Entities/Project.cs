@@ -1,9 +1,9 @@
 ﻿namespace Project.Management.System.Model.Entities
 {
-    public class Project : BaseEntity
+    public class Projects : BaseEntity
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
         public string Name { get; set; }
     }
 }

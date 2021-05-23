@@ -5,14 +5,14 @@ using System.Data;
 
 namespace Project.Management.System.Model.Configuration
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-               .HasColumnName("UserId")
+               .HasColumnName("AccountId")
                .HasColumnType(SqlDbType.Int.ToString())
                .ValueGeneratedOnAdd();
         }

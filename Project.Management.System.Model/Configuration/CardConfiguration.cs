@@ -15,6 +15,11 @@ namespace Project.Management.System.Model.Configuration
                .HasColumnName("CardId")
                .HasColumnType(SqlDbType.Int.ToString())
                .ValueGeneratedOnAdd();
+
+            builder.HasOne(x => x.Project)
+             .WithMany()
+             .HasForeignKey(x => x.ProjectId)
+             .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
