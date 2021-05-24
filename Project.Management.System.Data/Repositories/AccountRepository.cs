@@ -22,6 +22,12 @@ namespace Project.Management.System.Data.Repositories
             await _projectManagementDBContext.Account.AddAsync(account);
         }
 
+        public async Task UpdateAccountAsync(Account account)
+        {
+            _projectManagementDBContext.Account.Update(account);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();

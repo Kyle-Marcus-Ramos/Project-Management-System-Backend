@@ -9,5 +9,6 @@ namespace Project.Management.System.BusinessLogic.Services.Base
         Task SaveCard(SaveCardRequestDTO saveCardRequestDTO);
         Task UpdateCard(UpdateCardRequestDTO updateCardRequestDTO);
         Task<IEnumerable<GetCardResponseDTO>> GetCardByProjectId(GetCardRequestDTO projectId);
+        Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO);
     }
 }

@@ -6,6 +6,7 @@ namespace Project.Management.System.Data.Base
     public interface IAccountRepository
     {
         Task InsertAccountAsync(Account account);
+        Task UpdateAccountAsync(Account account);
         Task SaveChanges();
     }
 }

@@ -26,8 +26,21 @@ namespace Project.Management.System.BusinessLogic.Helpers
             account.Password = saveAccountRequestDTO.Password;
             account.Id = 0;
             return account;
-        } 
+        }
+        public static Account ToEntity(this GetAccountByAccountIdResponseDTO saveAccountRequestDTO, Account account)
+        {
+            account.CreatedDate = DateTime.Now;
+            account.ModifiedDate = DateTime.Now;
+            account.IsActive = true;
+            account.IsAdmin = saveAccountRequestDTO.IsAdmin;
+            account.Name = saveAccountRequestDTO.Name;
+            account.Email = saveAccountRequestDTO.Email;
+            account.Password = "Default123";
+            account.Id = saveAccountRequestDTO.AccountId;
+            return account;
+        }
 
+        
         public static Projects ToEntity(this SaveProjectRequestDTO saveProjectRequestDTO, Projects project)
         {
             project.CreatedDate = DateTime.Now;
@@ -50,7 +63,7 @@ namespace Project.Management.System.BusinessLogic.Helpers
             card.Assignee = saveCardRequestDTO.Assignee;
             card.Reporter = saveCardRequestDTO.Reporter;
             card.Priority = saveCardRequestDTO.Priority;
-            card.Estimate = saveCardRequestDTO.Estimate;
+            card.Estimate = Convert.ToDateTime(saveCardRequestDTO.Estimate);
             card.ProjectId = saveCardRequestDTO.ProjectId;
             card.Id = 0;
             return card;
@@ -67,7 +80,7 @@ namespace Project.Management.System.BusinessLogic.Helpers
             card.Assignee = updateCardRequestDTO.Assignee;
             card.Reporter = updateCardRequestDTO.Reporter;
             card.Priority = updateCardRequestDTO.Priority;
-            card.Estimate = updateCardRequestDTO.Estimate;
+            card.Estimate = Convert.ToDateTime(updateCardRequestDTO.Estimate);
             card.Id = updateCardRequestDTO.CardId;
             return card;
         }

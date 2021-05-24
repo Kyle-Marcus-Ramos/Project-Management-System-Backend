@@ -52,5 +52,11 @@ namespace Project_Management_System_Backend.Controllers
         {
             return await _cardService.GetCardByProjectId(getCardRequestDTO);
         }
+
+        [HttpPost]
+        public async Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO)
+        {
+            return await _cardService.GetCalendarByProjectId(calendarByProjectIDRequestDTO);
+        }
     }
 }

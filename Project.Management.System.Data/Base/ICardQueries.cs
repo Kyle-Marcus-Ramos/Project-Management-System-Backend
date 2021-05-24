@@ -8,5 +8,6 @@ namespace Project.Management.System.Data.Base
     {
         Task<UpdateCardRequestDTO> GetCardByCardData(UpdateCardRequestDTO updateCardRequestDTO);
         Task<IEnumerable<GetCardResponseDTO>> GetCardByProjectId(int projectId);
+        Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO);
     }
 }

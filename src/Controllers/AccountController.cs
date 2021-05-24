@@ -26,6 +26,12 @@ namespace Project_Management_System_Backend.Controllers
             return await _accountService.GetAccountByEmailPassword(accountRequest);
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<GetAccountAllResponseDTO>> GetAccountAll()
+        {
+            return await _accountService.GetAccountAll();
+        }
+
         [HttpPost]
         public async Task<IActionResult> SaveAccount(SaveAccountRequestDTO saveAccountRequestDTO)
         {
@@ -35,6 +41,20 @@ namespace Project_Management_System_Backend.Controllers
                 return Ok();
             }
              catch(Exception ex)
+            {
+                return BadRequest("An error has occurred on Saving Account!" + ex);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordRequestDTO forgetPasswordRequestDTO)
+        {
+            try
+            {
+                await _accountService.SaveAccount(saveAccountRequestDTO);
+                return Ok();
+            }
+            catch (Exception ex)
             {
                 return BadRequest("An error has occurred on Saving Account!" + ex);
             }

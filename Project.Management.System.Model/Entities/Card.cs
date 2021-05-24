@@ -1,4 +1,6 @@
-﻿namespace Project.Management.System.Model.Entities
+﻿using System;
+
+namespace Project.Management.System.Model.Entities
 {
     public class Card : BaseEntity
     {
@@ -10,6 +12,7 @@
         public string Assignee { get; set; }
         public string Reporter { get; set; }
         public string Priority { get; set; }
-        public string Estimate { get; set; }
+        public DateTime? Estimate { get; set; }
+        public DateTime? DueDate { get; set; }
     }
 }

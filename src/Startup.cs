@@ -46,6 +46,12 @@ namespace Project_Management_System_Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 

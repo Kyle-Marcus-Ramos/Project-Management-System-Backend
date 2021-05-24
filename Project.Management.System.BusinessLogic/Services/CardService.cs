@@ -15,6 +15,19 @@ namespace Project.Management.System.BusinessLogic.Services
             : base(unitOfWork, unitOfWorkDapper, logger)
         { }
 
+        public async Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO)
+        {
+            try
+            {
+                return await _unitOfWokDapper.CardQueries.GetCalendarByProjectId(calendarByProjectIDRequestDTO);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptionError(ex.ToString());
+                throw ex;
+            }
+        }
+
         public async Task<IEnumerable<GetCardResponseDTO>> GetCardByProjectId(GetCardRequestDTO getCardRequestDTO)
         {
             try

@@ -2,6 +2,7 @@
 using Project.Management.System.Data.Base;
 using Project.Management.System.Model.DTO;
 using Project.Management.System.Model.Entities;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -42,6 +43,19 @@ namespace Project.Management.System.Data.Queries
             param.Add("@IsActive", true);
 
             return await _db.QuerySingleOrDefaultAsync<GetAccountByEmailPasswordResponseDTO>(sql: query, param: param, commandType: CommandType.Text);
+        }
+
+        public async Task<IEnumerable<GetAccountAllResponseDTO>> GetAccountAll()
+        {
+            var query = @$"
+            SELECT A.* 
+            FROM Account A 
+            AND IsActive = @IsActive";
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@IsActive", true);
+
+            return await _db.QueryAsync<GetAccountAllResponseDTO>(sql: query, param: param, commandType: CommandType.Text);
         }
     }
 }

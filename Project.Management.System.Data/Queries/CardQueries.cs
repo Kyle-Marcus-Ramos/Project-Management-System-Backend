@@ -50,5 +50,20 @@ namespace Project.Management.System.Data.Queries
 
             return await _db.QueryAsync<GetCardResponseDTO>(sql: query, param: param, commandType: CommandType.Text);
         }
+
+        public async Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO)
+        {
+            var query = @$"
+            SELECT C.* 
+            FROM Card C
+            WHERE ProjectId = @ProjectId
+            AND IsActive = @IsActive";
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@ProjectId", calendarByProjectIDRequestDTO.ProjectId);
+            param.Add("@IsActive", true);
+
+            return await _db.QueryAsync<GetCalendarByProjectIdResponseDTO>(sql: query, param: param, commandType: CommandType.Text);
+        }
     }
 }
