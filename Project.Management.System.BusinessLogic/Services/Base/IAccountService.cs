@@ -9,5 +9,6 @@ namespace Project.Management.System.BusinessLogic.Services.Base
         Task<GetAccountByEmailPasswordResponseDTO> GetAccountByEmailPassword(GetAccountByEmailPasswordRequestDTO accountrequestDTO);
         Task SaveAccount(SaveAccountRequestDTO saveAccountRequestDTO);
         Task<IEnumerable<GetAccountAllResponseDTO>> GetAccountAll();
+        Task ForgetPassword(ForgetPasswordRequestDTO forgetPasswordRequestDTO);
     }
 }

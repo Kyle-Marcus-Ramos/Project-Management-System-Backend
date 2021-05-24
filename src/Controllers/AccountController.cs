@@ -51,7 +51,7 @@ namespace Project_Management_System_Backend.Controllers
         {
             try
             {
-                await _accountService.SaveAccount(saveAccountRequestDTO);
+                await _accountService.ForgetPassword(forgetPasswordRequestDTO);
                 return Ok();
             }
             catch (Exception ex)
