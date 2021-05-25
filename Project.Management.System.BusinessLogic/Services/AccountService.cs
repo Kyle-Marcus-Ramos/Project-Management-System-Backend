@@ -67,8 +67,12 @@ namespace Project.Management.System.BusinessLogic.Services
                 if (forgetPasswordRequestDTO != null)
                 {
                     var getAccount = await _unitOfWokDapper.AccountQueries.GetAccountByEmail(forgetPasswordRequestDTO.Email);
-                    getAccount.ToEntity(account);
-                    await _unitOfWork.AccountRepository.UpdateAccountAsync(account);
+                    if(getAccount != null)
+                    {
+                        getAccount.ToEntity(account);
+                        await _unitOfWork.AccountRepository.UpdateAccountAsync(account);
+                    }
+                    throw new Exception();
                 }
             }
             catch (Exception ex)

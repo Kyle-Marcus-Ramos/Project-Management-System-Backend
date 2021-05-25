@@ -27,12 +27,16 @@ namespace Project.Management.System.BusinessLogic.Helpers
             account.Id = 0;
             return account;
         }
-        public static Account ToEntity(this GetAccountByAccountIdResponseDTO saveAccountRequestDTO, Account account)
+        public static Account ToEntity(this GetAccountByAccountIdResponseDTO saveAccountRequestDTO, Account accounts)
         {
+            if (saveAccountRequestDTO.IsAdmin == null || saveAccountRequestDTO.IsAdmin == false)
+                saveAccountRequestDTO.IsAdmin = false;
+
+            Account account = new Account();
             account.CreatedDate = DateTime.Now;
             account.ModifiedDate = DateTime.Now;
             account.IsActive = true;
-            account.IsAdmin = saveAccountRequestDTO.IsAdmin;
+            account.IsAdmin = saveAccountRequestDTO.IsAdmin ?? false;
             account.Name = saveAccountRequestDTO.Name;
             account.Email = saveAccountRequestDTO.Email;
             account.Password = "Default123";

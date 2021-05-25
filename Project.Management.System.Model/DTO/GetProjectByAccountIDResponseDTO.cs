@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Project.Management.System.Model.DTO
+﻿namespace Project.Management.System.Model.DTO
 {
     public class GetProjectByAccountIDResponseDTO
     {
         public string Name { get; set; }
+        public int ProjectId { get; set; }
     }
 }

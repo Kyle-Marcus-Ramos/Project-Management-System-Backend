@@ -50,7 +50,7 @@ namespace Project.Management.System.Data.Queries
             var query = @$"
             SELECT A.* 
             FROM Account A 
-            AND IsActive = @IsActive";
+            WHERE IsActive = @IsActive";
 
             DynamicParameters param = new DynamicParameters();
             param.Add("@IsActive", true);
