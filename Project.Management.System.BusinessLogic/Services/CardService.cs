@@ -32,7 +32,58 @@ namespace Project.Management.System.BusinessLogic.Services
         {
             try
             {
-                return await _unitOfWokDapper.CardQueries.GetCardByProjectId(getCardRequestDTO.ProjectId);
+                List<GetCardResponseDTO> response = new List<GetCardResponseDTO>();
+                GetCardResponseDTO cardResponses = null;
+                //var result = await _unitOfWokDapper.CardQueries.GetCardByProjectId(getCardRequestDTO.ProjectId);
+
+                var toDoResult = await _unitOfWokDapper.CardQueries.GetCardByStatus("TO DO");
+                var inProgressResult = await _unitOfWokDapper.CardQueries.GetCardByStatus("IN PROGRESS");
+                var forTestingResult = await _unitOfWokDapper.CardQueries.GetCardByStatus("FOR TESTING");
+                var completedResult = await _unitOfWokDapper.CardQueries.GetCardByStatus("COMPLETED");
+
+                var cardToDoResponses = new GetCardResponseDTO()
+                {
+                    Position = 0,
+                    Name = "TO DO",
+                    Cards = toDoResult
+                };
+
+                var cardInProgressResponses = new GetCardResponseDTO()
+                {
+                    Position = 1,
+                    Name = "IN PROGRESS",
+                    Cards = inProgressResult
+                };
+
+                var cardForTestingResponses = new GetCardResponseDTO()
+                {
+                    Position = 2,
+                    Name = "FOR TESTING",
+                    Cards = forTestingResult
+                };
+
+                var cardCompletedResponses = new GetCardResponseDTO()
+                {
+                    Position = 3,
+                    Name = "COMPLETED",
+                    Cards = completedResult
+                };
+                response.Add(cardToDoResponses);
+                response.Add(cardInProgressResponses);
+                response.Add(cardForTestingResponses);
+                response.Add(cardCompletedResponses);
+
+                //foreach (var res in result)
+                //{
+                //    cardResponses = new GetCardResponseDTO()
+                //    {
+                //        Name = "todo",
+
+                //    };
+                //    response.Add(cardResponses);
+                //}
+                return response;
+                //return null;
             }
             catch (Exception ex)
             {
@@ -68,8 +119,8 @@ namespace Project.Management.System.BusinessLogic.Services
                 if (updateCardRequestDTO != null)
                 {
                     var retrieveCardData = await _unitOfWokDapper.CardQueries.GetCardByCardData(updateCardRequestDTO);
-                    retrieveCardData.ToEntity(card);
-                    await _unitOfWork.CardRepository.UpdateCardAsync(card);
+                    retrieveCardData.ToEntity(card, updateCardRequestDTO.Position);
+                     await _unitOfWork.CardRepository.UpdateCardAsync(card);
                 }
             }
             catch (Exception ex)

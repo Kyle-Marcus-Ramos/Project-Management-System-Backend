@@ -73,18 +73,42 @@ namespace Project.Management.System.BusinessLogic.Helpers
             return card;
         }
 
-        public static Card ToEntity(this UpdateCardRequestDTO updateCardRequestDTO, Card card)
+        public static Card ToEntity(this UpdateCardRequestDTO updateCardRequestDTO, Card card, int position)
         {
+            switch (position)
+            {
+                case 0:
+                    {
+                        card.Status = "TO DO";
+                        break;
+                    }
+                case 1:
+                    {
+                        card.Status = "IN PROGRESS";
+                        break;
+                    }
+                case 2:
+                    {
+                        card.Status = "FOR TESTING";
+                        break;
+                    }
+                case 3:
+                    {
+                        card.Status = "COMPLETED";
+                        break;
+                    }
+            }
+
             card.CreatedDate = DateTime.Now;
             card.ModifiedDate = DateTime.Now;
             card.IsActive = true;
             card.Title = updateCardRequestDTO.Title;
-            card.Status = updateCardRequestDTO.Status;
             card.Description = updateCardRequestDTO.Description;
             card.Assignee = updateCardRequestDTO.Assignee;
             card.Reporter = updateCardRequestDTO.Reporter;
             card.Priority = updateCardRequestDTO.Priority;
-            card.Estimate = Convert.ToDateTime(updateCardRequestDTO.Estimate);
+            card.Estimate = updateCardRequestDTO.Estimate;
+            card.ProjectId = Convert.ToInt32(updateCardRequestDTO.ProjectId);
             card.Id = updateCardRequestDTO.CardId;
             return card;
         }

@@ -2,6 +2,7 @@
 using Project.Management.System.Data.Base;
 using Project.Management.System.Data.Context;
 using Project.Management.System.Model.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace Project.Management.System.Data.Repositories
@@ -24,8 +25,16 @@ namespace Project.Management.System.Data.Repositories
 
         public async Task UpdateCardAsync(Card card)
         {
-             _projectManagementDBContext.Update(card);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _projectManagementDBContext.Update(card);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
     }
 }

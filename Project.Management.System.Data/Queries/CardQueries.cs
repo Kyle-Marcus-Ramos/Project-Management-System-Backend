@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Project.Management.System.Data.Base;
 using Project.Management.System.Model.DTO;
+using Project.Management.System.Model.DTO.Common;
 using Project.Management.System.Model.Entities;
 using System.Collections.Generic;
 using System.Data;
@@ -19,18 +20,12 @@ namespace Project.Management.System.Data.Queries
             SELECT C.* 
             FROM Card C
             WHERE Title = @Title
-            AND Status = @Status
-            AND Assignee = @Assignee
-            AND Reporter = @Reporter
-            AND Priority = @Priority
+            AND Description = @Description
             AND IsActive = @IsActive";
 
             DynamicParameters param = new DynamicParameters();
             param.Add("@Title", updateCardRequestDTO.Title);
-            param.Add("@Status", updateCardRequestDTO.Status);
-            param.Add("@Assignee", updateCardRequestDTO.Assignee);
-            param.Add("@Reporter", updateCardRequestDTO.Reporter);
-            param.Add("@Priority", updateCardRequestDTO.Priority);
+            param.Add("@Description", updateCardRequestDTO.Description);
             param.Add("@IsActive", true);
 
             return await _db.QuerySingleOrDefaultAsync<UpdateCardRequestDTO>(sql: query, param: param, commandType: CommandType.Text);
@@ -50,6 +45,22 @@ namespace Project.Management.System.Data.Queries
 
             return await _db.QueryAsync<GetCardResponseDTO>(sql: query, param: param, commandType: CommandType.Text);
         }
+
+        public async Task<IEnumerable<Cards>> GetCardByStatus(string status)
+        {
+            var query = @$"
+            SELECT C.* 
+            FROM Card C
+            WHERE Status = @Status
+            AND IsActive = @IsActive";
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@Status", status);
+            param.Add("@IsActive", true);
+
+            return await _db.QueryAsync<Cards>(sql: query, param: param, commandType: CommandType.Text);
+        }
+
 
         public async Task<IEnumerable<GetCalendarByProjectIdResponseDTO>> GetCalendarByProjectId(GetCalendarByProjectIDRequestDTO calendarByProjectIDRequestDTO)
         {
